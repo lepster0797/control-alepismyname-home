@@ -1,0 +1,25 @@
+---
+  name: update apt and yum packages
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install System Updates for RHEL based systems
+      yum: 
+        name: '*'
+        state: latest
+        update_cache: yes
+      
+      when:
+        - ansible_os_family == "RedHat"
+        - ansible_distribution == "RockyLinux"
+
+    - name: Install System Updates for Ubuntu Systems
+      apt:
+        name: '*'
+        state: latest
+        update_cache: yes
+      
+      when:
+        - ansible_os_family == "Debian"
+        - ansible_distribution == "Ubuntu"
