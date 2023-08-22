@@ -1,2 +1,10 @@
 ---
-  - name: Creates Users
+   name: Create new user and set up keyless authentication
+   hosts: all
+   become: yes
+
+  task:
+
+    - name: Create New User  
+  
+  
